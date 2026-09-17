@@ -1,0 +1,29 @@
+name: Kiem thu tu dong (CI)
+
+# Hành động này sẽ tự động chạy khi có code mới đẩy lên nhánh main
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Bước 1: Lấy code của bạn từ GitHub về máy ảo
+    - name: Lấy mã nguồn
+      uses: actions/checkout@v4
+
+    # Bước 2: Cài đặt môi trường Node.js trên máy ảo
+    - name: Cài đặt Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' # Sử dụng phiên bản Node.js ổn định
+
+    # Bước 3: Tự động cài đặt lại các thư viện (bao gồm Jest)
+    - name: Cài đặt các thư viện phụ thuộc
+      run: npm install
+
+    # Bước 4: Chạy bài Unit Test
+    - name: Chạy kiểm thử bằng Jest
+      run: npx jest
