@@ -1,6 +1,6 @@
 // auth.js
 function login(username, password) {
-    return username === 'admin' && password === '123';
+    return username === 'admin' && password === '1234';
 }
 
 // Export module để có thể test bằng Jest trong môi trường Node.js
