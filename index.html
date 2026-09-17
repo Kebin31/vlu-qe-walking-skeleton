@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        .form-group { margin-bottom: 15px; }
+        #message { font-weight: bold; margin-top: 15px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+    <h2>Trang Đăng Nhập</h2>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="username">Tên đăng nhập:</label><br>
+            <input type="text" id="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Mật khẩu:</label><br>
+            <input type="password" id="password" required>
+        </div>
+        <button type="submit">Đăng nhập</button>
+    </form>
+
+    <div id="message"></div>
+
+    <!-- Nhúng file logic -->
+    <script src="login.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngăn chặn form tải lại trang
+            
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const messageEl = document.getElementById('message');
+
+            // Gọi hàm login từ auth.js
+            if (login(user, pass)) {
+                messageEl.textContent = 'Đăng nhập thành công!';
+                messageEl.className = 'success';
+            } else {
+                messageEl.textContent = 'Sai tài khoản hoặc mật khẩu!';
+                messageEl.className = 'error';
+            }
+        });
+    </script>
+</body>
+</html>
